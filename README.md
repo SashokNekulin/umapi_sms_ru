@@ -22,7 +22,7 @@ var sms = new UMAPI_SMS_RU(api_id);
 ```
 
 
-###Отправка SMS:
+### Отправка SMS:
 
 ```js
 sms.send( to, msg, from , ip, time, daytime, translit, test)
