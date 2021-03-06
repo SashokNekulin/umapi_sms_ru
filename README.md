@@ -26,7 +26,9 @@ var sms = new UMAPI_SMS_RU(api_id);
 
 Отправка SMS:
 ```js
-sms.send( to, msg, from , ip, time, daytime, translit, test).then(console.log).catch(console.error);
+sms.send( to, msg, from , ip, time, daytime, translit, test)
+.then(e => console.log(e.data))
+.catch(console.error);
 ```
 
 
