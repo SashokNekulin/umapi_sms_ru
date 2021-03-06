@@ -1,0 +1,27 @@
+{
+  "name": "umapi_sms_ru",
+  "version": "1.0.0",
+  "description": "Подключение к API https://umapi.sms.ru",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SashokNekulin/umapi_sms_ru.git"
+  },
+  "keywords": [
+    "umapi",
+    "sms"
+  ],
+  "author": "Alexandr Nikulin <nekulin@mail.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SashokNekulin/umapi_sms_ru/issues"
+  },
+  "homepage": "https://github.com/SashokNekulin/umapi_sms_ru#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "querystring": "^0.2.1"
+  }
+}
