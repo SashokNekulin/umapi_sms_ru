@@ -25,6 +25,7 @@ var sms = new UMAPI_SMS_RU(api_id);
 
 
 Отправка SMS:
+Параметр|Обязательный|Значение|Описание
 ```js
 sms.send( to, msg, from , ip, time, daytime, translit, test)
 .then(e => console.log(e.data))
