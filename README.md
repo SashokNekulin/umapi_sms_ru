@@ -44,7 +44,7 @@ sms.send( to, msg, from , ip, time, daytime, translit, test)
 ### Проверить статус отправленных сообщений
 
 ```js
-sms.status(sms_id: string)
+sms.status(sms_id)
 .then(e => console.log(e.data))
 .catch(console.error)
 ```
