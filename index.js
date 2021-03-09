@@ -2,7 +2,7 @@
  * @ Author: <Alexandr Nikulin> (nekulin@mail.ru)
  * @ Github: https://github.com/SashokNekulin
  * @ Create Time: 2020-07-15 13:05:37
- * @ Modified time: 2021-03-06 13:39:53
+ * @ Modified time: 2021-03-09 11:33:07
  * @ Copyrights: (c) 2020 umapi.ru
  * @ License: MIT
  * @ Description:
@@ -10,19 +10,37 @@
 
 const axios = require('axios')
 const querystring = require('querystring');
+const code = require('./code.json')
 
+const editCode = (type, path, maps) => {
+    if (typeof maps === 'object') {
+        for (const key in maps) {
+            if (key === "status_code") {
+                const status_title = code[type + path] && code[type + path][maps[key]]
+                    ? code[type + path][maps[key]]
+                    : maps['status_text']
+                        ? maps['status_text']
+                        : ''
+                maps["status_title"] = status_title
+            }
+            maps[key] = editCode(type, path, maps[key])
+        }
+    }
+    return maps
+}
 
 const zapros = (type, path, formData) => {
     return new Promise((resolve, reject) => {
         try {
-            axios.post(`https://sms55.ru/${type}/${path}`, querystring.stringify(formData))
-                .then(r => resolve(r.data))
+            axios.post(`https://sms.ru/${type}/${path}`, querystring.stringify(formData))
+                .then(r => resolve(editCode(type, path, r.data)))
                 .catch(reject)
         } catch (error) {
             reject(error)
         }
     })
 }
+
 
 
 module.exports = class UMAPI_SMS_RU {
