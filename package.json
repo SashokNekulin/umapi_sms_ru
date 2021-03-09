@@ -1,6 +1,6 @@
 {
   "name": "umapi_sms_ru",
-  "version": "1.0.0",
+  "version": "1.0.01",
   "description": "Подключение к API https://umapi.sms.ru",
   "main": "index.js",
   "scripts": {
