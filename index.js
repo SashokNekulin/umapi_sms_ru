@@ -2,7 +2,7 @@
  * @ Author: <Alexandr Nikulin> (nekulin@mail.ru)
  * @ Github: https://github.com/SashokNekulin
  * @ Create Time: 2020-07-15 13:05:37
- * @ Modified time: 2021-03-09 11:33:07
+ * @ Modified time: 2021-03-09 12:07:45
  * @ Copyrights: (c) 2020 umapi.ru
  * @ License: MIT
  * @ Description:
@@ -118,14 +118,12 @@ module.exports = class UMAPI_SMS_RU {
      * Если вы отправляете более, чем на 10 номеров за раз, то рекомендуем параметр to передавать в теле запроса методом POST, а не в адресной строке.
      * @param {string} msg Текст сообщения в кодировке UTF-8
      * @param {string} from Имя отправителя (должно быть согласовано с администрацией). Если не заполнено, в качестве отправителя будет указан ваш отправитель по умолчанию.
-     * @param {string} multi Если вы хотите в одном запросе отправить разные сообщения на несколько номеров,
-     * то воспользуйтесь этим параметром (до 100 сообщений за 1 запрос).
      * В этом случае, параметры to и msg использовать не нужно: каждое сообщение передается в виде multi[номер получателя]=текст&multi[номер получателя]=текст
      * Если вы указываете несколько номеров и один из них указан неверно, то вместо идентификатора сообщения в выдаче вы получите трехзначный код ошибки.
      * @param {string} translit
      *
      */
-    cost = (to, msg, from = null, multi = null, translit = null) => {
+    cost = (to, msg, from = null, translit = null) => {
         const formData = {
             api_id: this.api_key,
             to,
@@ -133,7 +131,6 @@ module.exports = class UMAPI_SMS_RU {
             json: 1
         }
         if (from) formData.from = from
-        if (multi) formData.multi = multi
         if (translit) formData.translit = translit
         return zapros('sms', 'cost', formData)
     }
@@ -285,7 +282,7 @@ module.exports = class UMAPI_SMS_RU {
     /**
      * Проверка статуса звонка
      *
-     * @param {string} check_id Номер телефона пользователя, который необходимо авторизовать (с которого мы будем ожидать звонок)
+     * @param {string} check_id Идентификатор авторизации, полученный от нас в первом примере
      */
     callcheck_status = (check_id) => {
         const formData = {
